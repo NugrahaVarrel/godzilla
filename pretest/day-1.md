@@ -218,12 +218,28 @@
         else println("Other")
     }
     ```
+    
+    **Correct Code**
+    ```kotlin
+        when (x) {
+        1 -> println("One")
+        2 -> println("Two")
+        else -> println("Other")
+    }
+    ```
 
 27. **Incorrect code:**
 
     ```kotlin
     fun greet() {
         println("Hello, $name)
+    }
+    ```
+    
+    **Correct Code**
+    ```kotlin
+    fun greet() {
+    println("Hello, $name")
     }
     ```
 
@@ -233,6 +249,12 @@
     val myVar = "10"
     val result = myVar + 5
     ```
+    **Correct Code:**
+
+    ```kotlin
+    val myVar = 10
+    val result = myVar + 5
+    ```
 
 29. **Incorrect code:**
 
@@ -240,12 +262,26 @@
     val numbers = arrayOf(1, 2, 3)
     println(numbers[3])
     ```
+    **Correct Code:**
+
+    ```kotlin
+    val numbers = arrayOf(1, 2, 3)
+    println(numbers[2])
+    ```
 
 30. **Incorrect code:**
     ```kotlin
     class Person(val name: String, val age: Int) {
         fun greet() {
             print("Hello, my name is " + name + " and I'm " + age)
+        }
+    }
+    ```
+    **Correcct code:**
+    ```kotlin
+    class Person(val name: String, val age: Int) {
+        fun greet() {
+            print("Hello, my name is $name and I'm $age")
         }
     }
     ```
@@ -277,3 +313,23 @@ fun main() {
     reserveSeat("Sarah", 2)
 }
 ```
+
+**Correct Code:**
+```kotlin
+fun reserveSeat(name: String, seatNumber: Int) {
+    val availableSeats = arrayOf(1, 2, 3, 4, 5)
+
+    if (availableSeats.contains(seatNumber)) {
+        availableSeats[seatNumber-1] = 0  // Mark the seat as reserved by setting it to 0
+        println("$name reserved seat $seatNumber.")
+    } else {
+        println("Seat $seatNumber is already reserved.")
+    }
+}
+
+fun main() {
+    reserveSeat("John", 2)
+    reserveSeat("Sarah", 2)
+}
+```
+
