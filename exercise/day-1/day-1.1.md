@@ -3,10 +3,27 @@
 ### 🔹 Bagian 1 — Dasar (Data Type & Print)
 
 1. Deklarasikan variabel `studentName` dengan tipe **String** dan inisialisasikan dengan nama kamu sendiri. Cetak hasilnya.
+
+```kotlin
+    val studentName: String = "Nugraha Varrel Kusuma"
+    println("Nama Lengkap Saya : $studentName")
+```
 2. Deklarasikan variabel `age` dengan tipe **Int** dan isi dengan umur kamu. Cetak hasilnya.
+```kotlin
+    val age : Int = 22
+```
 3. Buat variabel `temperature` dengan tipe **Float**, isi dengan nilai suhu 36.7, lalu cetak.
+```kotlin
+
+```
 4. Buat variabel `isGraduated` dengan tipe **Boolean**, isi dengan `false`, lalu cetak.
+```kotlin
+
+```
 5. Deklarasikan variabel `grade` dengan tipe **Char** dan isi dengan huruf `'A'`. Cetak.
+```kotlin
+
+```
 
 ---
 
