@@ -17,7 +17,7 @@ fun main() {
     val hasil = findSecondLargest(angka)
 
     if (hasil != null) {
-        println("Angka tertinggi kedua adalah: $hasil")
+        println("Angka tertinggi kedua adalah: $hasil")m
     } else {
         println("Tidak ada angka tertinggi kedua.")
     }
