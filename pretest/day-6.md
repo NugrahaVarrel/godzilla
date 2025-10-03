@@ -5,7 +5,7 @@
 **1. Fragment biasanya digunakan untuk:**
 ```
 a) Menggantikan seluruh Activity
-b) Menampilkan bagian UI dalam sebuah Activity
+**b) Menampilkan bagian UI dalam sebuah Activity**
 c) Menghapus Activity dari memori
 d) Menjalankan background service
 ```
@@ -13,7 +13,7 @@ d) Menjalankan background service
 **2. Lifecycle method pertama kali dipanggil saat Fragment dibuat adalah:**
 ```
 a) `onResume()`
-b) `onCreateView()`
+**b) `onCreateView()`**
 c) `onAttach()`
 d) `onStart()`
 ```
@@ -22,14 +22,14 @@ d) `onStart()`
 ```
 a) Menambahkan fragment baru di atas fragment lama
 b) Menghapus semua fragment yang ada
-c) Mengganti fragment lama dengan fragment baru
+**c) Mengganti fragment lama dengan fragment baru**
 d) Membuat fragment berjalan di background
 ```
 
 **4. Untuk menambahkan fragment ke Activity melalui XML, digunakan:**
 ```
 a) `<include>`
-b) `<fragment>`
+**b) `<fragment>`**
 c) `<LinearLayout>`
 d) `<FrameLayout>`
 ```
@@ -37,7 +37,7 @@ d) `<FrameLayout>`
 **5. Menggunakan `addToBackStack()` pada FragmentTransaction berarti:**
 ```
 a) Fragment tidak bisa kembali
-b) Fragment disimpan agar bisa diakses dengan tombol back
+**b) Fragment disimpan agar bisa diakses dengan tombol back**
 c) Fragment langsung dihentikan
 d) Fragment hanya jalan sekali
 ```
@@ -47,14 +47,30 @@ d) Fragment hanya jalan sekali
 ## B. Isian Singkat (5 Soal)
 
 **6.** Sebutkan dua keuntungan menggunakan Fragment dibandingkan hanya Activity.
+- Reusable UI -> satu fragment bisa dipakai di banyak activity.
+- Lebih ringan, memudahkan membuat tampilan responsif (tablet/HP)
 
 **7.** Bagaimana cara menambahkan fragment secara dinamis dalam Activity menggunakan Kotlin?
+- menggunakan supportFragmentManager.beginTransaction
 
 **8.** Lifecycle Fragment mirip dengan Activity. Sebutkan minimal 3 perbedaan pentingnya.
+- Fragment punya onAttach() dan onDetach()
+- Fragment punya onCreateView() untuk inflate layout
+- Fragmentterkait penuh dengan Activity yang menaunginya (ikut lifecycle Activity)
 
 **9.** Apa perbedaan `add()` dan `replace()` pada FragmentTransaction?
+- add() -> menumpuk fragment baru di atas fragment lama (lama tetap ada)
+- replace() -> menghapus fragment lama lalu diganti dengan fragment baru.
 
 **10.** Bagaimana cara mengirim data dari Activity ke Fragment?
+- menggunakan fragment.arguments
+```kotlin
+val fragment = ExampleFragment()
+fragment.arguments = Bundle().apply {
+    putString("key", "value")
+}
+```
+
 
 ---
 
@@ -65,6 +81,13 @@ d) Fragment hanya jalan sekali
 ```kotlin
 supportFragmentManager.beginTransaction()
     .add(R.id.container, ExampleFragment)
+    .commit()
+```
+
+**Correct Code**
+```kotlin
+supportFragmentManager.beginTransaction()
+    .add(R.id.container, ExampleFragment())
     .commit()
 ```
 
@@ -82,12 +105,28 @@ override fun onCreateView(
 }
 ```
 
+**Correct Code**
+```kotlin
+override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+): View {
+    return inflater.inflate(R.layout.fragment_example, container, null)
+}
+```
+
 ---
 
 **13. Fragment ingin mengirim data ke Activity, tapi ada kesalahan. Perbaiki:**
 
 ```kotlin
 (activity as MainActivity).showMessage = "Hello"
+```
+
+**Correct Code**
+```kotlin
+(activity as MainActivity).showMessage("Hello")
 ```
 
 ---
@@ -98,6 +137,14 @@ override fun onCreateView(
 val fragment = ExampleFragment()
 supportFragmentManager.beginTransaction()
     .replace(R.id.container, fragment)
+```
+
+**Correct Code**
+```kotlin
+val fragment = ExampleFragment()
+supportFragmentManager.beginTransaction()
+    .replace(R.id.container, fragment)
+    .commit()
 ```
 
 ---
@@ -112,6 +159,15 @@ supportFragmentManager.beginTransaction()
     android:layout_height="match_parent"/>
 ```
 
+**Correct Code**
+```xml
+<fragment
+    android:id="@+id/myFragment"
+    android:name="com.example.MyFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+```
+
 ---
 
 **16. Perbaiki agar fragment bisa menerima argument `username`:**
@@ -119,6 +175,14 @@ supportFragmentManager.beginTransaction()
 ```kotlin
 val fragment = ProfileFragment()
 fragment.arguments.putString("username", "khalid")
+```
+
+**Correct Code**
+```kotlin
+val fragment = ProfileFragment()
+fragment.arguments = Bundle().apply{
+    putString("username", "Khalid")
+}
 ```
 
 ---
@@ -129,7 +193,12 @@ fragment.arguments.putString("username", "khalid")
 val manager = supportFragment
 manager.beginTransaction().add(R.id.container, MyFragment()).commit()
 ```
+**Correct Code**
 
+```kotlin
+val manager = supportFragmentManager
+manager.beginTransaction().add(R.id.container, MyFragment()).commit()
+```
 ---
 
 **18. Ada error pada penggunaan `childFragmentManager`. Perbaiki:**
@@ -137,6 +206,13 @@ manager.beginTransaction().add(R.id.container, MyFragment()).commit()
 ```kotlin
 childFragmentManager.beginTransaction()
     .add(R.id.container, AnotherFragment)
+    .commit()
+```
+
+**Correct Code**
+```kotlin
+childFragmentManager.beginTransaction()
+    .add(R.id.container, AnotherFragment())
     .commit()
 ```
 
@@ -160,6 +236,13 @@ supportFragmentManager.beginTransaction()
     .commit()
 ```
 
+**Correct Code**
+```kotlin
+val fragment = DetailFragment.newInstance("id123")
+supportFragmentManager.beginTransaction()
+    .replace(R.id.container, fragment)
+    .commit()
+```
 ---
 
 ## buat projectkan di folder /pretest dengan nama project fragment
